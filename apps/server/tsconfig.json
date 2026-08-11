@@ -10,6 +10,10 @@
         // New packages continue to inherit the strict error policy from tsconfig.base.json.
         "diagnosticSeverity": {
           "anyUnknownInErrorContext": "warning",
+          "catchAllToMapError": "warning",
+          "catchToOrElseSucceed": "warning",
+          "catchUnfailableEffect": "warning",
+          "effectFnOpportunity": "warning",
           "globalConsole": "warning",
           "globalConsoleInEffect": "warning",
           "globalDate": "warning",
@@ -20,6 +24,12 @@
           "instanceOfSchema": "warning",
           "nodeBuiltinImport": "warning",
           "preferSchemaOverJson": "warning",
+          "runEffectInsideEffect": "warning",
+          "schemaStructWithTag": "warning",
+          "tryCatchInEffectGen": "warning",
+          "unnecessaryEffectGen": "warning",
+          "unnecessaryFailYieldableError": "warning",
+          "unnecessaryPipeChain": "warning",
           "unsafeEffectTypeAssertion": "warning"
         }
       }
