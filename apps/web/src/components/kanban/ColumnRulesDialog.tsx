@@ -257,9 +257,7 @@ function RuleRows({
                 }}
               >
                 <SelectTrigger size="sm" className="w-28 shrink-0" aria-label="Card face">
-                  <SelectValue>
-                    {CARD_VIEW_LABELS[rule.arg] ?? rule.arg}
-                  </SelectValue>
+                  <SelectValue>{CARD_VIEW_LABELS[rule.arg] ?? rule.arg}</SelectValue>
                 </SelectTrigger>
                 <SelectPopup alignItemWithTrigger={false}>
                   {Object.keys(CARD_VIEWS).map((entry) => (

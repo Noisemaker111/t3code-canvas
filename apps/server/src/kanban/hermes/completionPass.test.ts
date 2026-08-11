@@ -262,9 +262,7 @@ describe("runRulePass — Active completion", () => {
     // Its own thread id: the completion counts are process-local, so a thread
     // an earlier test already asked would read as waiting rather than fresh.
     const { api, state } = makeFakeBoardApi({
-      cards: [
-        makeFakeCard({ id: "a2", at: "active", threadId: "t2", body: "Ship the hotbar" }),
-      ],
+      cards: [makeFakeCard({ id: "a2", at: "active", threadId: "t2", body: "Ship the hotbar" })],
       transcripts: {
         t2: {
           ...transcript([

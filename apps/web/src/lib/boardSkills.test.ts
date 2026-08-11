@@ -1,10 +1,6 @@
 import { describe, expect, it } from "vite-plus/test";
 
-import {
-  mergeCoreBoardSkillIds,
-  resolveBoardSkillPipeline,
-  runSkillPipeline,
-} from "./boardSkills";
+import { mergeCoreBoardSkillIds, resolveBoardSkillPipeline, runSkillPipeline } from "./boardSkills";
 
 describe("browser board skills", () => {
   it("keeps optional transforms but retires the old model-router", () => {

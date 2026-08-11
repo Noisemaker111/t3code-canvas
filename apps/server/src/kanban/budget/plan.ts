@@ -8,11 +8,7 @@
  *
  * @module kanban/budget/plan
  */
-import type {
-  HermesBudgetKnobs,
-  HermesBudgetPlan,
-  HermesSessionFloor,
-} from "@t3tools/contracts";
+import type { HermesBudgetKnobs, HermesBudgetPlan, HermesSessionFloor } from "@t3tools/contracts";
 
 import type { PriceRow, TurnSample } from "./measurements.ts";
 import type { ShadowPrice } from "./shadowPrice.ts";
@@ -81,7 +77,6 @@ export function buildBudgetPlan(input: PlanInput): HermesBudgetPlan {
     summary: "Routing is decided semantically by Hermes.",
   };
 }
-
 
 /** Human-readable status view. This formats measurements only; it never routes work. */
 export function formatBudgetPlan(plan: HermesBudgetPlan): string {

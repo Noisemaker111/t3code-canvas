@@ -215,7 +215,11 @@ export function panelPlacement(ref: StationRef, slot = 0): Box {
         ...size,
       };
     case "explorer":
-      return { x: EXPLORER_X - slot * (panelSize("explorer").w + GUTTER), y: PANEL_BAND_Y, ...size };
+      return {
+        x: EXPLORER_X - slot * (panelSize("explorer").w + GUTTER),
+        y: PANEL_BAND_Y,
+        ...size,
+      };
     case "editor":
       return {
         x: EDITOR_X + slot * (panelSize("editor").w + GUTTER),

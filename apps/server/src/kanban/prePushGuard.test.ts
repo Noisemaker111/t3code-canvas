@@ -4,11 +4,13 @@ import { runPrePushGuard, scanContent, scanPath, scanSize } from "./prePushGuard
 
 const io = (files: Record<string, string>) => ({
   size: async (absolutePath: string) => {
-    const key = Object.keys(files).find((name) => absolutePath.endsWith(name));
+    const normalizedPath = absolutePath.replaceAll("\\", "/");
+    const key = Object.keys(files).find((name) => normalizedPath.endsWith(name));
     return key === undefined ? null : Buffer.byteLength(files[key] ?? "");
   },
   read: async (absolutePath: string) => {
-    const key = Object.keys(files).find((name) => absolutePath.endsWith(name));
+    const normalizedPath = absolutePath.replaceAll("\\", "/");
+    const key = Object.keys(files).find((name) => normalizedPath.endsWith(name));
     return key === undefined ? null : (files[key] ?? null);
   },
 });

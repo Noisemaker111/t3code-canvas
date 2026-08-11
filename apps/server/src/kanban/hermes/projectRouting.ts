@@ -57,7 +57,9 @@ export function projectSlugs(projects: ReadonlyArray<BoardProject>): ReadonlyMap
   }
   const slugs = new Map<string, string>();
   for (const [base, group] of grouped) {
-    for (const [index, project] of group.toSorted((left, right) => left.id.localeCompare(right.id)).entries()) {
+    for (const [index, project] of group
+      .toSorted((left, right) => left.id.localeCompare(right.id))
+      .entries()) {
       slugs.set(project.id, index === 0 ? base : `${base}-${index + 1}`);
     }
   }

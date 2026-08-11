@@ -56,9 +56,7 @@ const RoutingUsageFileSchema = Schema.Struct({
   pending: Schema.Array(PendingUsageObservationSchema),
 });
 const decodeRoutingUsageFile = Schema.decodeUnknownOption(RoutingUsageFileSchema);
-const decodeLegacyRoutingUsage = Schema.decodeUnknownOption(
-  Schema.Array(RoutingUsageSampleSchema),
-);
+const decodeLegacyRoutingUsage = Schema.decodeUnknownOption(Schema.Array(RoutingUsageSampleSchema));
 
 const LIMIT = 300;
 const PENDING_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1_000;
@@ -156,11 +154,7 @@ export function finishRoutingUsageObservation(input: {
 }): RoutingUsageSample | null {
   const state = currentState(input.at);
   const pending = state.pending.find((entry) => entry.cardId === input.cardId);
-  if (
-    !pending ||
-    input.pool.id !== pending.poolId ||
-    input.pool.remainingPercent === null
-  ) {
+  if (!pending || input.pool.id !== pending.poolId || input.pool.remainingPercent === null) {
     return null;
   }
   // A reset or overlapping work makes attribution impossible. Remove this
