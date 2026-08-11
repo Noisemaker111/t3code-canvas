@@ -91,10 +91,15 @@ export default defineRule({
     const allowedCount = baselineFor(normalized);
     let occurrenceCount = 0;
 
-    const check = (node: {
-      readonly expression: unknown;
-      readonly typeAnnotation: unknown;
-    }): void => {
+    const check = (node: unknown): void => {
+      if (
+        typeof node !== "object" ||
+        node === null ||
+        !("expression" in node) ||
+        !("typeAnnotation" in node)
+      ) {
+        return;
+      }
       if (isAllowedTargetType(node.typeAnnotation)) return;
       if (!isJsonParseCall(node.expression)) return;
 
