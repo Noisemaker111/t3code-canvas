@@ -26,7 +26,13 @@ jobs:
         run: vp run --filter @t3tools/desktop ensure:electron
 
       - name: Check
-        run: vp check
+        run: |
+          check_log="$RUNNER_TEMP/vp-check.log"
+          if ! vp check >"$check_log" 2>&1; then
+            tail -n 200 "$check_log"
+            exit 1
+          fi
+          tail -n 40 "$check_log"
 
       - name: Typecheck
         run: vpr typecheck
