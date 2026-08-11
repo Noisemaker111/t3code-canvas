@@ -31,6 +31,8 @@ function card(partial: Partial<KanbanCard> & Pick<KanbanCard, "id" | "at">): Kan
     createdAt: partial.createdAt ?? now,
     updatedAt: partial.updatedAt ?? now,
     columnEnteredAt: partial.columnEnteredAt ?? now,
+    timeline: partial.timeline ?? { launchedAt: null, prOpenedAt: null, shippedAt: null },
+    tokenUsage: partial.tokenUsage ?? null,
   };
 }
 
