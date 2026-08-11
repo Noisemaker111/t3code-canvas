@@ -1169,7 +1169,7 @@ describe("composerDraftStore modelSelection", () => {
     expect(
       draftFor(threadId, TEST_ENVIRONMENT_ID)?.modelSelectionByProvider[CODEX_INSTANCE],
     ).toEqual(
-      modelSelection(CODEX_DRIVER, "gpt-5.3-codex", {
+      modelSelection(CODEX_DRIVER, "gpt-5.6-sol", {
         reasoningEffort: "xhigh",
         fastMode: true,
       }),
@@ -1511,7 +1511,7 @@ describe("composerDraftStore setModelSelection", () => {
 
     expect(
       draftFor(threadId, TEST_ENVIRONMENT_ID)?.modelSelectionByProvider[CODEX_INSTANCE],
-    ).toEqual(modelSelection(CODEX_DRIVER, "gpt-5.3-codex"));
+    ).toEqual(modelSelection(CODEX_DRIVER, "gpt-5.6-sol"));
   });
 });
 
@@ -1531,7 +1531,7 @@ describe("composerDraftStore sticky composer settings", () => {
     );
 
     expect(useComposerDraftStore.getState().stickyModelSelectionByProvider[CODEX_INSTANCE]).toEqual(
-      modelSelection(CODEX_DRIVER, "gpt-5.3-codex", {
+      modelSelection(CODEX_DRIVER, "gpt-5.6-sol", {
         reasoningEffort: "medium",
         fastMode: true,
       }),
@@ -1604,7 +1604,7 @@ describe("composerDraftStore provider-scoped option updates", () => {
     store.setProviderModelOptions(threadRef, CLAUDE_AGENT_DRIVER, toSelections({ effort: "max" }));
     const draft = draftFor(threadId, TEST_ENVIRONMENT_ID);
     expect(draft?.modelSelectionByProvider[CODEX_INSTANCE]).toEqual(
-      modelSelection(CODEX_DRIVER, "gpt-5.3-codex", { reasoningEffort: "medium" }),
+      modelSelection(CODEX_DRIVER, "gpt-5.6-sol", { reasoningEffort: "medium" }),
     );
     expect(draft?.modelSelectionByProvider[CLAUDE_AGENT_INSTANCE]?.options).toEqual(
       createModelSelection(
