@@ -128,7 +128,7 @@ export function getProviderModelCapabilities(
   const exactSlug = normalizeCustomModelSlug(model);
   const exactMatch = models.find((candidate) => candidate.slug === exactSlug);
   if (exactMatch) {
-    return exactMatch.capabilities;
+    return exactMatch.capabilities ?? EMPTY_CAPABILITIES;
   }
   const slug = normalizeModelSlug(model, provider);
   return models.find((candidate) => candidate.slug === slug)?.capabilities ?? EMPTY_CAPABILITIES;
