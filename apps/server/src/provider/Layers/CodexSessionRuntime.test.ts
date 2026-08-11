@@ -113,15 +113,15 @@ describe("buildTurnStartParams", () => {
           text: "Make a plan",
         },
       ],
-      model: "gpt-5.3-codex",
+      model: "gpt-5.6-sol",
       effort: "medium",
       collaborationMode: {
         mode: "plan",
         settings: {
-          model: "gpt-5.3-codex",
+          model: "gpt-5.6-sol",
           reasoning_effort: "medium",
           developer_instructions: buildCodexDeveloperInstructions("plan", {
-            model: "gpt-5.3-codex",
+            model: "gpt-5.6-sol",
             reasoningEffort: "medium",
           }),
         },
@@ -162,14 +162,14 @@ describe("buildTurnStartParams", () => {
           url: "data:image/png;base64,abc",
         },
       ],
-      model: "gpt-5.3-codex",
+      model: "gpt-5.6-sol",
       collaborationMode: {
         mode: "default",
         settings: {
-          model: "gpt-5.3-codex",
+          model: "gpt-5.6-sol",
           reasoning_effort: "medium",
           developer_instructions: buildCodexDeveloperInstructions("default", {
-            model: "gpt-5.3-codex",
+            model: "gpt-5.6-sol",
             reasoningEffort: "medium",
           }),
         },
