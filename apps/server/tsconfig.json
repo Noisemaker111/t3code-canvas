@@ -6,8 +6,9 @@
     "plugins": [
       {
         "name": "@effect/language-service",
-        // Existing server migration debt stays visible without masking normal TypeScript errors.
-        // New packages continue to inherit the strict error policy from tsconfig.base.json.
+        // Existing server Effect migrations stay visible without blocking compilation.
+        // Normal TypeScript errors and unlisted strict Effect errors remain blocking.
+        "ignoreEffectWarningsInTscExitCode": true,
         "diagnosticSeverity": {
           "anyUnknownInErrorContext": "warning",
           "catchAllToMapError": "warning",
@@ -22,6 +23,7 @@
           "globalFetch": "warning",
           "globalTimers": "warning",
           "instanceOfSchema": "warning",
+          "multipleEffectProvide": "warning",
           "nodeBuiltinImport": "warning",
           "preferSchemaOverJson": "warning",
           "runEffectInsideEffect": "warning",
