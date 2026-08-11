@@ -1178,11 +1178,11 @@ describe("composerDraftStore modelSelection", () => {
 
   it("keeps default-only model selections on the draft", () => {
     const store = useComposerDraftStore.getState();
-    store.setModelSelection(threadRef, modelSelection(CODEX_DRIVER, "gpt-5.4"));
+    store.setModelSelection(threadRef, modelSelection(CODEX_DRIVER, "gpt-5.6-sol"));
 
     expect(
       draftFor(threadId, TEST_ENVIRONMENT_ID)?.modelSelectionByProvider[CODEX_INSTANCE],
-    ).toEqual(modelSelection(CODEX_DRIVER, "gpt-5.4"));
+    ).toEqual(modelSelection(CODEX_DRIVER, "gpt-5.6-sol"));
   });
 
   it("replaces only the targeted provider options on the current model selection", () => {
@@ -1252,7 +1252,10 @@ describe("composerDraftStore modelSelection", () => {
   it("keeps explicit off/default codex overrides on the selection", () => {
     const store = useComposerDraftStore.getState();
 
-    store.setModelSelection(threadRef, modelSelection(CODEX_DRIVER, "gpt-5.4", { fastMode: true }));
+    store.setModelSelection(
+      threadRef,
+      modelSelection(CODEX_DRIVER, "gpt-5.6-sol", { fastMode: true }),
+    );
 
     store.setProviderModelOptions(
       threadRef,
@@ -1263,7 +1266,7 @@ describe("composerDraftStore modelSelection", () => {
     expect(
       draftFor(threadId, TEST_ENVIRONMENT_ID)?.modelSelectionByProvider[CODEX_INSTANCE],
     ).toEqual(
-      modelSelection(CODEX_DRIVER, "gpt-5.4", {
+      modelSelection(CODEX_DRIVER, "gpt-5.6-sol", {
         reasoningEffort: "high",
         fastMode: false,
       }),
@@ -1303,21 +1306,21 @@ describe("composerDraftStore modelSelection", () => {
     const store = useComposerDraftStore.getState();
 
     store.setProviderModelOptions(threadRef, CURSOR_DRIVER, toSelections({ reasoning: "high" }), {
-      model: "gpt-5.4",
+      model: "gpt-5.6-sol",
       persistSticky: true,
     });
 
     expect(
       draftFor(threadId, TEST_ENVIRONMENT_ID)?.modelSelectionByProvider[CURSOR_INSTANCE],
     ).toEqual(
-      modelSelection(CURSOR_DRIVER, "gpt-5.4", {
+      modelSelection(CURSOR_DRIVER, "gpt-5.6-sol", {
         reasoning: "high",
       }),
     );
     expect(
       useComposerDraftStore.getState().stickyModelSelectionByProvider[CURSOR_INSTANCE],
     ).toEqual(
-      modelSelection(CURSOR_DRIVER, "gpt-5.4", {
+      modelSelection(CURSOR_DRIVER, "gpt-5.6-sol", {
         reasoning: "high",
       }),
     );
@@ -1369,8 +1372,11 @@ describe("composerDraftStore modelSelection", () => {
 
     const draft = draftFor(threadId, TEST_ENVIRONMENT_ID);
     expect(draft?.modelSelectionByProvider[CODEX_INSTANCE]?.options).toEqual(
-      createModelSelection(CODEX_INSTANCE, "gpt-5.4", toSelections({ reasoningEffort: "xhigh" }))
-        .options,
+      createModelSelection(
+        CODEX_INSTANCE,
+        "gpt-5.6-sol",
+        toSelections({ reasoningEffort: "xhigh" }),
+      ).options,
     );
     expect(draft?.modelSelectionByProvider[CLAUDE_AGENT_INSTANCE]?.options).toEqual(
       createModelSelection(
@@ -1399,7 +1405,7 @@ describe("composerDraftStore modelSelection", () => {
       modelSelection(CLAUDE_AGENT_DRIVER, "claude-opus-4-6", { effort: "max" }),
     );
     expect(draft?.modelSelectionByProvider[CODEX_INSTANCE]?.options).toEqual(
-      createModelSelection(CODEX_INSTANCE, "gpt-5.4", toSelections({ fastMode: true })).options,
+      createModelSelection(CODEX_INSTANCE, "gpt-5.6-sol", toSelections({ fastMode: true })).options,
     );
     expect(draft?.activeProvider).toBe("claudeAgent");
   });
@@ -1407,14 +1413,14 @@ describe("composerDraftStore modelSelection", () => {
   it("creates the first sticky snapshot from provider option changes", () => {
     const store = useComposerDraftStore.getState();
 
-    store.setModelSelection(threadRef, modelSelection(CODEX_DRIVER, "gpt-5.4"));
+    store.setModelSelection(threadRef, modelSelection(CODEX_DRIVER, "gpt-5.6-sol"));
 
     store.setProviderModelOptions(threadRef, CODEX_DRIVER, toSelections({ fastMode: true }), {
       persistSticky: true,
     });
 
     expect(useComposerDraftStore.getState().stickyModelSelectionByProvider[CODEX_INSTANCE]).toEqual(
-      modelSelection(CODEX_DRIVER, "gpt-5.4", {
+      modelSelection(CODEX_DRIVER, "gpt-5.6-sol", {
         fastMode: true,
       }),
     );
@@ -1536,10 +1542,10 @@ describe("composerDraftStore sticky composer settings", () => {
   it("normalizes empty sticky model options by dropping selection options", () => {
     const store = useComposerDraftStore.getState();
 
-    store.setStickyModelSelection(modelSelection(CODEX_DRIVER, "gpt-5.4"));
+    store.setStickyModelSelection(modelSelection(CODEX_DRIVER, "gpt-5.6-sol"));
 
     expect(useComposerDraftStore.getState().stickyModelSelectionByProvider[CODEX_INSTANCE]).toEqual(
-      modelSelection(CODEX_DRIVER, "gpt-5.4"),
+      modelSelection(CODEX_DRIVER, "gpt-5.6-sol"),
     );
     expect(useComposerDraftStore.getState().stickyActiveProvider).toBe("codex");
   });
@@ -1548,7 +1554,7 @@ describe("composerDraftStore sticky composer settings", () => {
     const store = useComposerDraftStore.getState();
 
     store.setStickyModelSelection(
-      modelSelection(CURSOR_DRIVER, "gpt-5.4", {
+      modelSelection(CURSOR_DRIVER, "gpt-5.6-sol", {
         reasoning: undefined,
         fastMode: undefined,
         thinking: undefined,
@@ -1558,7 +1564,7 @@ describe("composerDraftStore sticky composer settings", () => {
 
     expect(
       useComposerDraftStore.getState().stickyModelSelectionByProvider[CURSOR_INSTANCE],
-    ).toEqual(modelSelection(CURSOR_DRIVER, "gpt-5.4"));
+    ).toEqual(modelSelection(CURSOR_DRIVER, "gpt-5.6-sol"));
     expect(useComposerDraftStore.getState().stickyActiveProvider).toBe("cursor");
   });
 

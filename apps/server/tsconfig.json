@@ -2,7 +2,28 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "types": ["node"],
-    "lib": ["ESNext", "esnext.disposable"]
+    "lib": ["ESNext", "esnext.disposable"],
+    "plugins": [
+      {
+        "name": "@effect/language-service",
+        // Existing server migration debt stays visible without masking normal TypeScript errors.
+        // New packages continue to inherit the strict error policy from tsconfig.base.json.
+        "diagnosticSeverity": {
+          "anyUnknownInErrorContext": "warning",
+          "globalConsole": "warning",
+          "globalConsoleInEffect": "warning",
+          "globalDate": "warning",
+          "globalDateInEffect": "warning",
+          "globalErrorInEffectFailure": "warning",
+          "globalFetch": "warning",
+          "globalTimers": "warning",
+          "instanceOfSchema": "warning",
+          "nodeBuiltinImport": "warning",
+          "preferSchemaOverJson": "warning",
+          "unsafeEffectTypeAssertion": "warning"
+        }
+      }
+    ]
   },
   "include": ["src", "vite.config.ts", "scripts", "integration", "../../scripts/lib"]
 }
