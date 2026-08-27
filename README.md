@@ -39,11 +39,10 @@ is the current changelog; compare it with [upstream's history](https://github.co
 
 ## Current status
 
-This checkout is on the fork's `main` at
-[`9874480`](https://github.com/Noisemaker111/t3code-canvas/commit/98744807d43f05c40f5f95de33c75d9661964c4e).
-The application version is `0.0.28`. The publishable package is `t3` from
+At the current `main` checkout, the application version is `0.0.28`. The
+publishable package is `t3` from
 `apps/server`; this repository is the application fork, not the VPS host
-configuration. The working tree is clean at this commit.
+configuration. This README was verified against that commit.
 
 ## Quick start and development
 
