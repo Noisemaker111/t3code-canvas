@@ -1,4 +1,5 @@
 import * as NodeServices from "@effect/platform-node/NodeServices";
+import * as NodePath from "node:path";
 import { describe, it, assert } from "@effect/vitest";
 import * as Effect from "effect/Effect";
 import * as Exit from "effect/Exit";
@@ -145,7 +146,7 @@ function mockSpawnerLayer(
     ChildProcessSpawner.ChildProcessSpawner,
     ChildProcessSpawner.make((command) => {
       const cmd = command as unknown as { args: ReadonlyArray<string> };
-      return Effect.succeed(mockHandle(handler(cmd.args)));
+      return Effect.succeed(mockHandle(handler(cmd.args.map(normalizeMockArg))));
     }),
   );
 }
@@ -171,7 +172,7 @@ function recordingMockSpawnerLayer(
         };
       };
       commands.push({ args: cmd.args, env: cmd.options?.env });
-      return Effect.succeed(mockHandle(handler(cmd.args)));
+      return Effect.succeed(mockHandle(handler(cmd.args.map(normalizeMockArg))));
     }),
   );
   return { layer, commands };
@@ -190,10 +191,14 @@ function mockCommandSpawnerLayer(
         command: string;
         args: ReadonlyArray<string>;
       };
-      return Effect.succeed(mockHandle(handler(cmd.command, cmd.args)));
+      return Effect.succeed(mockHandle(handler(cmd.command, cmd.args.map(normalizeMockArg))));
     }),
   );
 }
+
+// Windows command-line quoting is represented by caret-escaped quotes by the
+// platform spawner. Tests care about the logical argv, not cmd.exe syntax.
+const normalizeMockArg = (arg: string) => arg.replaceAll("^", "").replace(/^"(.*)"$/, "$1");
 
 function failingSpawnerLayer(description: string) {
   return Layer.succeed(
@@ -851,7 +856,7 @@ it.layer(Layer.mergeAll(NodeServices.layer, ServerSettingsModule.layerTest(), Te
               attempt < 50 && cachedProvider?.checkedAt !== refreshedProvider.checkedAt;
               attempt += 1
             ) {
-              yield* TestClock.adjust("10 millis");
+              yield* Effect.promise(() => new Promise<void>((resolve) => setTimeout(resolve, 10)));
               yield* Effect.yieldNow;
               cachedProvider = yield* readProviderStatusCache(filePath);
             }
@@ -1840,7 +1845,7 @@ it.layer(Layer.mergeAll(NodeServices.layer, ServerSettingsModule.layerTest(), Te
       );
 
       it.effect("runs Claude status probes with the configured CLAUDE_CONFIG_DIR", () => {
-        const claudeConfigDir = "/tmp/t3code-claude-home";
+        const claudeConfigDir = NodePath.resolve("/tmp/t3code-claude-home");
         const recorded = recordingMockSpawnerLayer((args) => {
           const joined = args.join(" ");
           if (joined === "--version") return { stdout: "1.0.0\n", stderr: "", code: 0 };
