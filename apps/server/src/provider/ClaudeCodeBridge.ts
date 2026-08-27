@@ -1,5 +1,7 @@
 // @effect-diagnostics nodeBuiltinImport:off
 // @effect-diagnostics globalTimers:off
+// oxlint-disable t3code/namespace-node-imports -- this standalone process boundary uses Node's direct APIs
+// oxlint-disable t3code/no-global-process-runtime -- executable discovery and process cleanup must use the host runtime
 /**
  * Boundary to the user's installed, official Claude Code CLI.
  *
@@ -94,6 +96,15 @@ const MODES: ReadonlySet<ClaudePermissionMode> = new Set([
   "bypassPermissions",
 ]);
 
+function isSessionMap(value: unknown): value is Record<string, string> {
+  return (
+    value !== null &&
+    typeof value === "object" &&
+    !Array.isArray(value) &&
+    Object.values(value).every((entry) => typeof entry === "string")
+  );
+}
+
 export function redactClaudeOutput(value: string): string {
   return value
     .replace(/(authorization\s*[:=]\s*bearer\s+)[^\s]+/gi, "$1[REDACTED]")
@@ -185,7 +196,8 @@ async function sessionIdFor(cwd: string, key: string, resume: boolean): Promise<
   const file = join(cwd, SESSION_FILE);
   let sessions: Record<string, string> = {};
   try {
-    sessions = JSON.parse(await readFile(file, "utf8")) as Record<string, string>;
+    const parsed: unknown = JSON.parse(await readFile(file, "utf8"));
+    if (isSessionMap(parsed)) sessions = parsed;
   } catch {
     /* first use */
   }

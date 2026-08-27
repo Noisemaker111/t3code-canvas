@@ -1,4 +1,5 @@
 // @effect-diagnostics nodeBuiltinImport:off
+// oxlint-disable t3code/namespace-node-imports -- test harness uses direct Node filesystem/process APIs
 import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";

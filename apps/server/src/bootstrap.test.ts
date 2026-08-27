@@ -1,4 +1,5 @@
 // @effect-diagnostics nodeBuiltinImport:off
+// oxlint-disable t3code/no-global-process-runtime -- platform-specific fixture setup is intentionally outside Effect
 import * as NodeFS from "node:fs";
 import * as NodePath from "node:path";
 import * as NodeChildProcess from "node:child_process";
