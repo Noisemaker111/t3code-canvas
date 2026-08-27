@@ -22,6 +22,7 @@
  * binaries. That keeps the assertions focused on registry routing
  * behaviour rather than the runtime details of each provider.
  */
+// @effect-diagnostics nodeBuiltinImport:off
 import { describe, expect, it } from "@effect/vitest";
 import * as NodePath from "node:path";
 import * as NodeServices from "@effect/platform-node/NodeServices";

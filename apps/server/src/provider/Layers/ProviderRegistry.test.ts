@@ -1,3 +1,4 @@
+// @effect-diagnostics nodeBuiltinImport:off, globalTimers:off
 import * as NodeServices from "@effect/platform-node/NodeServices";
 import * as NodePath from "node:path";
 import { describe, it, assert } from "@effect/vitest";
@@ -856,6 +857,7 @@ it.layer(Layer.mergeAll(NodeServices.layer, ServerSettingsModule.layerTest(), Te
               attempt < 50 && cachedProvider?.checkedAt !== refreshedProvider.checkedAt;
               attempt += 1
             ) {
+              // @effect-diagnostics globalTimers:off
               yield* Effect.promise(() => new Promise<void>((resolve) => setTimeout(resolve, 10)));
               yield* Effect.yieldNow;
               cachedProvider = yield* readProviderStatusCache(filePath);

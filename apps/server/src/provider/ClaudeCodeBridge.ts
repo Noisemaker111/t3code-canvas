@@ -165,7 +165,14 @@ export function resolveClaudeExecutable(
   environment: NodeJS.ProcessEnv = process.env,
 ): string | null {
   const requested = input?.trim() || "claude";
-  if (isAbsolute(requested)) return requested;
+  if (isAbsolute(requested)) {
+    try {
+      accessSync(requested);
+      return resolve(requested);
+    } catch {
+      return null;
+    }
+  }
   const pathValue = environment.PATH ?? environment.Path ?? "";
   const extensions =
     process.platform === "win32" ? (environment.PATHEXT ?? ".EXE;.CMD;.BAT").split(";") : [""];
@@ -210,12 +217,43 @@ async function sessionIdFor(cwd: string, key: string, resume: boolean): Promise<
   return id;
 }
 
-function killOwnedTree(child: ReturnType<typeof spawn>): void {
+async function waitForClose(child: ReturnType<typeof spawn>, timeoutMs: number): Promise<void> {
+  if (child.exitCode !== null) return;
+  await new Promise<void>((resolveWait) => {
+    const timer = setTimeout(resolveWait, timeoutMs);
+    child.once("close", () => {
+      clearTimeout(timer);
+      resolveWait();
+    });
+  });
+}
+
+async function killOwnedTree(child: ReturnType<typeof spawn>): Promise<void> {
   if (child.killed || child.exitCode !== null) return;
   if (process.platform === "win32" && child.pid) {
-    execFile("taskkill", ["/PID", String(child.pid), "/T", "/F"], () => undefined);
-    // taskkill is asynchronous; also close the owned direct child immediately.
+    await new Promise<void>((resolveKill) => {
+      execFile("taskkill", ["/PID", String(child.pid), "/T", "/F"], () => resolveKill());
+    });
     child.kill();
+    await waitForClose(child, 1_000);
+    return;
+  }
+  if (child.pid) {
+    try {
+      // The child is detached, so its negative pid is the owned process group.
+      process.kill(-child.pid, "SIGTERM");
+    } catch {
+      child.kill("SIGTERM");
+    }
+    await waitForClose(child, 1_000);
+    if (child.exitCode === null) {
+      try {
+        process.kill(-child.pid, "SIGKILL");
+      } catch {
+        child.kill("SIGKILL");
+      }
+      await waitForClose(child, 1_000);
+    }
     return;
   }
   child.kill("SIGTERM");
@@ -270,6 +308,8 @@ export async function runClaudeCode(options: ClaudeCodeBridgeOptions): Promise<C
   let stdoutBytes = 0;
   let sawDelta = false;
   let remainder = "";
+  let cleanupPromise: Promise<void> | undefined;
+  const cleanup = () => (cleanupPromise ??= killOwnedTree(child));
   const emit = (line: string) => {
     const parsed = parseClaudeEvent(line, sawDelta);
     sawDelta = parsed.isDelta;
@@ -282,7 +322,7 @@ export async function runClaudeCode(options: ClaudeCodeBridgeOptions): Promise<C
   child.stdout.on("data", (chunk: Buffer) => {
     stdoutBytes += chunk.byteLength;
     if (stdoutBytes > MAX_OUTPUT_BYTES) {
-      killOwnedTree(child);
+      void cleanup();
       return;
     }
     remainder += chunk.toString("utf8");
@@ -298,34 +338,55 @@ export async function runClaudeCode(options: ClaudeCodeBridgeOptions): Promise<C
   let timedOut = false;
   const timer = setTimeout(() => {
     timedOut = true;
-    killOwnedTree(child);
+    void cleanup();
   }, timeoutMs);
-  const abort = () => killOwnedTree(child);
+  const abort = () => void cleanup();
   options.signal?.addEventListener("abort", abort, { once: true });
-  const exitPromise = new Promise<number>((resolveExit, reject) => {
-    child.once("error", reject);
-    child.once("close", (value) => resolveExit(value ?? 1));
-  });
+  const exitPromise = new Promise<{ readonly code: number; readonly error?: Error }>(
+    (resolveExit) => {
+      let error: Error | undefined;
+      child.once("error", (cause) => {
+        error = cause;
+      });
+      child.once("close", (value) =>
+        resolveExit(error === undefined ? { code: value ?? 1 } : { code: value ?? 1, error }),
+      );
+    },
+  );
   const code = await Promise.race([
     exitPromise,
     new Promise<null>((resolveExit) => setTimeout(() => resolveExit(null), 2_000)),
   ]);
   clearTimeout(timer);
   options.signal?.removeEventListener("abort", abort);
-  if (timedOut)
+  if (timedOut) {
+    await cleanupPromise;
     throw new ClaudeCodeBridgeError("timeout", `Claude Code timed out after ${timeoutMs} ms.`);
-  if (options.signal?.aborted)
+  }
+  if (options.signal?.aborted) {
+    await cleanupPromise;
     throw new ClaudeCodeBridgeError("cancelled", "Claude Code run was cancelled.");
-  if (code === null)
+  }
+  if (code === null) {
+    await cleanupPromise;
     throw new ClaudeCodeBridgeError("process", "Claude Code did not exit after cleanup.");
+  }
+  if (code.error) {
+    const detail = redactClaudeOutput(code.error.message);
+    throw new ClaudeCodeBridgeError(
+      (code.error as NodeJS.ErrnoException).code === "ENOENT" ? "not-found" : "process",
+      detail || "Claude Code could not be started.",
+      { cause: code.error },
+    );
+  }
   if (remainder.trim()) emit(remainder);
-  if (code !== 0) {
+  if (code.code !== 0) {
     const detail = redactClaudeOutput(stderr).trim();
     const auth = /auth|login|oauth|logged in/i.test(detail);
     throw new ClaudeCodeBridgeError(
       auth ? "not-authenticated" : "process",
-      detail || `Claude Code exited with code ${code}.`,
+      detail || `Claude Code exited with code ${code.code}.`,
     );
   }
-  return { sessionId, text, exitCode: code, events };
+  return { sessionId, text, exitCode: code.code, events };
 }

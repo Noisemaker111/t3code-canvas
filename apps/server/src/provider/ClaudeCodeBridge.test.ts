@@ -1,6 +1,6 @@
 // @effect-diagnostics nodeBuiltinImport:off
 // oxlint-disable t3code/namespace-node-imports -- test harness uses direct Node filesystem/process APIs
-import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "@effect/vitest";
@@ -33,7 +33,25 @@ describe("ClaudeCodeBridge", () => {
   });
 
   it("resolves an explicit executable without PATH lookup", () => {
-    expect(resolveClaudeExecutable("C:\\Tools\\claude.exe")).toBe("C:\\Tools\\claude.exe");
+    expect(resolveClaudeExecutable(process.execPath)).toBe(process.execPath);
+  });
+
+  it("rejects missing absolute and discovered executables before spawning", async () => {
+    const directory = await mkdtemp(join(tmpdir(), "claude-bridge-missing-"));
+    try {
+      await expect(
+        runClaudeCode({
+          cwd: directory,
+          prompt: "hello",
+          executable: join(directory, "missing-claude"),
+        }),
+      ).rejects.toMatchObject({ code: "not-found" });
+      await expect(
+        runClaudeCode({ cwd: directory, prompt: "hello", env: { PATH: directory } }),
+      ).rejects.toMatchObject({ code: "not-found" });
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
   });
 
   it("does not forward API credentials in the child environment", () => {
@@ -132,6 +150,44 @@ describe("ClaudeCodeBridge", () => {
       });
       controller.abort();
       await expect(pending).rejects.toMatchObject({ code: "cancelled" });
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
+  });
+
+  it("cleans up a child descendant on timeout", async () => {
+    const directory = await mkdtemp(join(tmpdir(), "claude-bridge-tree-"));
+    const fake = join(directory, "fake-tree.mjs");
+    const pidFile = join(directory, "descendant.pid");
+    await writeFile(
+      fake,
+      [
+        'import { spawn } from "node:child_process";',
+        'import { writeFileSync } from "node:fs";',
+        'const descendant = spawn(process.execPath, ["-e", "setInterval(() => {}, 1000)"], { stdio: "ignore" });',
+        "writeFileSync(process.env.CLAUDE_CONFIG_DIR, String(descendant.pid));",
+        "setInterval(() => {}, 1000);",
+      ].join("\n"),
+    );
+    try {
+      await expect(
+        runClaudeCode({
+          cwd: directory,
+          prompt: "hello",
+          executable: process.execPath,
+          executableArgs: [fake],
+          timeoutMs: 100,
+          env: { CLAUDE_CONFIG_DIR: pidFile },
+        }),
+      ).rejects.toMatchObject({ code: "timeout" });
+      const pid = Number(await readFile(pidFile, "utf8"));
+      let alive = true;
+      try {
+        process.kill(pid, 0);
+      } catch {
+        alive = false;
+      }
+      expect(alive).toBe(false);
     } finally {
       await rm(directory, { recursive: true, force: true });
     }
