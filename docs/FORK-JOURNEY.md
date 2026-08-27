@@ -66,8 +66,8 @@ reads the application version from that checkout's own `HEAD`.
 
 ## How the two repositories relate now
 
-At the documented snapshot, `vps-code`'s `vendor/t3code` gitlink points to
-`bed34c8` (the public repository's `main` commit). The parent records only that
+At the documented snapshot, `vps-code`'s `vendor/t3code` gitlink points to the
+latest public `t3code-canvas` `main` commit. The parent records only that
 40-character application commit; it does not contain the application's files
 in its own tree. A standalone checkout of `t3code-canvas` is the source for the
 application. A checkout of `vps-code` needs
