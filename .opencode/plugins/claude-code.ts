@@ -54,11 +54,12 @@ export const makeClaudeCodeTool = (run: ClaudeRunner = runClaudeCode) =>
         cwd: input.cwd?.trim() || process.cwd(),
         prompt: input.prompt,
         resume: input.resume === true,
-        sessionKey: input.sessionKey || context?.sessionID,
-        model: input.model,
-        permissionMode: input.permissionMode,
-        signal: context?.signal,
-        onEvent: () => undefined,
+        ...(input.sessionKey || context?.sessionID
+          ? { sessionKey: input.sessionKey || context?.sessionID }
+          : {}),
+        ...(input.model ? { model: input.model } : {}),
+        ...(input.permissionMode ? { permissionMode: input.permissionMode } : {}),
+        ...(context?.signal ? { signal: context.signal } : {}),
       });
       const progress = result.events
         .filter((event) => event.type === "status" || event.type === "tool")
