@@ -33,8 +33,10 @@ server or its CLI packaging.
 
 This fork is [`Noisemaker111/t3code-canvas`](https://github.com/Noisemaker111/t3code-canvas),
 and the original is [`pingdotgg/t3code`](https://github.com/pingdotgg/t3code).
-The [fork journey and app boundary](https://github.com/Noisemaker111/vps-code/blob/main/docs/T3CODE-CANVAS-MIGRATION.md)
-explain the split from the VPS repository. The [fork commit history](https://github.com/Noisemaker111/t3code-canvas/commits/main)
+The [fork journey and app boundary](./docs/FORK-JOURNEY.md) explain the split
+from the VPS repository; the parent keeps the operational [migration
+handoff](https://github.com/Noisemaker111/vps-code/blob/main/docs/T3CODE-CANVAS-MIGRATION.md).
+The [fork commit history](https://github.com/Noisemaker111/t3code-canvas/commits/main)
 is the current changelog; compare it with [upstream's history](https://github.com/pingdotgg/t3code/commits/main).
 
 ## Current status
