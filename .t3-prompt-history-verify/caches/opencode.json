@@ -1,0 +1,297 @@
+{
+  "displayName": "OpenCode",
+  "showInteractionModeToggle": false,
+  "enabled": true,
+  "installed": true,
+  "version": "1.18.9",
+  "status": "ready",
+  "auth": {
+    "status": "authenticated",
+    "type": "opencode"
+  },
+  "checkedAt": "2026-08-03T00:19:07.287Z",
+  "message": "1 upstream provider connected through OpenCode.",
+  "models": [
+    {
+      "slug": "opencode/big-pickle",
+      "name": "Big Pickle",
+      "subProvider": "opencode",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "agent",
+            "label": "Agent",
+            "type": "select",
+            "options": [
+              {
+                "id": "build",
+                "label": "Build",
+                "isDefault": true
+              },
+              {
+                "id": "plan",
+                "label": "Plan"
+              }
+            ],
+            "currentValue": "build"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "opencode/deepseek-v4-flash-free",
+      "name": "DeepSeek V4 Flash Free (New)",
+      "subProvider": "opencode",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "variant",
+            "label": "Variant",
+            "type": "select",
+            "options": [
+              {
+                "id": "high",
+                "label": "High",
+                "isDefault": true
+              },
+              {
+                "id": "max",
+                "label": "Max"
+              }
+            ],
+            "currentValue": "high"
+          },
+          {
+            "id": "agent",
+            "label": "Agent",
+            "type": "select",
+            "options": [
+              {
+                "id": "build",
+                "label": "Build",
+                "isDefault": true
+              },
+              {
+                "id": "plan",
+                "label": "Plan"
+              }
+            ],
+            "currentValue": "build"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "opencode/laguna-s-2.1-free",
+      "name": "Laguna S 2.1 Free",
+      "subProvider": "opencode",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "variant",
+            "label": "Variant",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              }
+            ],
+            "currentValue": "medium"
+          },
+          {
+            "id": "agent",
+            "label": "Agent",
+            "type": "select",
+            "options": [
+              {
+                "id": "build",
+                "label": "Build",
+                "isDefault": true
+              },
+              {
+                "id": "plan",
+                "label": "Plan"
+              }
+            ],
+            "currentValue": "build"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "opencode/ling-3.0-flash-free",
+      "name": "Ling-3.0-flash Free",
+      "subProvider": "opencode",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "variant",
+            "label": "Variant",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              }
+            ],
+            "currentValue": "medium"
+          },
+          {
+            "id": "agent",
+            "label": "Agent",
+            "type": "select",
+            "options": [
+              {
+                "id": "build",
+                "label": "Build",
+                "isDefault": true
+              },
+              {
+                "id": "plan",
+                "label": "Plan"
+              }
+            ],
+            "currentValue": "build"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "opencode/mimo-v2.5-free",
+      "name": "MiMo V2.5 Free",
+      "subProvider": "opencode",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "agent",
+            "label": "Agent",
+            "type": "select",
+            "options": [
+              {
+                "id": "build",
+                "label": "Build",
+                "isDefault": true
+              },
+              {
+                "id": "plan",
+                "label": "Plan"
+              }
+            ],
+            "currentValue": "build"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "opencode/nemotron-3-ultra-free",
+      "name": "Nemotron 3 Ultra Free",
+      "subProvider": "opencode",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "agent",
+            "label": "Agent",
+            "type": "select",
+            "options": [
+              {
+                "id": "build",
+                "label": "Build",
+                "isDefault": true
+              },
+              {
+                "id": "plan",
+                "label": "Plan"
+              }
+            ],
+            "currentValue": "build"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "opencode/north-mini-code-free",
+      "name": "North Mini Code Free",
+      "subProvider": "opencode",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "variant",
+            "label": "Variant",
+            "type": "select",
+            "options": [
+              {
+                "id": "none",
+                "label": "None"
+              },
+              {
+                "id": "high",
+                "label": "High",
+                "isDefault": true
+              }
+            ],
+            "currentValue": "high"
+          },
+          {
+            "id": "agent",
+            "label": "Agent",
+            "type": "select",
+            "options": [
+              {
+                "id": "build",
+                "label": "Build",
+                "isDefault": true
+              },
+              {
+                "id": "plan",
+                "label": "Plan"
+              }
+            ],
+            "currentValue": "build"
+          }
+        ]
+      }
+    }
+  ],
+  "slashCommands": [],
+  "skills": [],
+  "instanceId": "opencode",
+  "driver": "opencode",
+  "continuation": {
+    "groupKey": "opencode:instance:opencode"
+  },
+  "versionAdvisory": {
+    "status": "behind_latest",
+    "currentVersion": "1.18.9",
+    "latestVersion": "1.18.11",
+    "updateCommand": "npm install -g opencode-ai@latest",
+    "canUpdate": true,
+    "checkedAt": "2026-08-03T00:19:44.874Z",
+    "message": "Install the update now or review provider settings."
+  }
+}

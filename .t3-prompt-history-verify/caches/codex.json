@@ -1,0 +1,345 @@
+{
+  "displayName": "Codex",
+  "showInteractionModeToggle": true,
+  "enabled": true,
+  "installed": true,
+  "version": null,
+  "status": "error",
+  "auth": {
+    "status": "unknown"
+  },
+  "checkedAt": "2026-08-03T00:19:07.153Z",
+  "message": "Timed out while checking Codex app-server provider status.",
+  "models": [
+    {
+      "slug": "gpt-5.6-sol",
+      "name": "GPT-5.6-Sol",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoningEffort",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low",
+                "isDefault": true
+              },
+              {
+                "id": "medium",
+                "label": "Medium"
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              },
+              {
+                "id": "max",
+                "label": "Max"
+              },
+              {
+                "id": "ultra",
+                "label": "Ultra"
+              }
+            ],
+            "currentValue": "low"
+          },
+          {
+            "id": "serviceTier",
+            "label": "Service Tier",
+            "type": "select",
+            "options": [
+              {
+                "id": "default",
+                "label": "Standard",
+                "isDefault": true
+              },
+              {
+                "id": "priority",
+                "label": "Fast",
+                "description": "1.5x speed, increased usage"
+              }
+            ],
+            "currentValue": "default"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gpt-5.6-terra",
+      "name": "GPT-5.6-Terra",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoningEffort",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              },
+              {
+                "id": "max",
+                "label": "Max"
+              },
+              {
+                "id": "ultra",
+                "label": "Ultra"
+              }
+            ],
+            "currentValue": "medium"
+          },
+          {
+            "id": "serviceTier",
+            "label": "Service Tier",
+            "type": "select",
+            "options": [
+              {
+                "id": "default",
+                "label": "Standard",
+                "isDefault": true
+              },
+              {
+                "id": "priority",
+                "label": "Fast",
+                "description": "1.5x speed, increased usage"
+              }
+            ],
+            "currentValue": "default"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gpt-5.6-luna",
+      "name": "GPT-5.6-Luna",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoningEffort",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              },
+              {
+                "id": "max",
+                "label": "Max"
+              }
+            ],
+            "currentValue": "medium"
+          },
+          {
+            "id": "serviceTier",
+            "label": "Service Tier",
+            "type": "select",
+            "options": [
+              {
+                "id": "default",
+                "label": "Standard",
+                "isDefault": true
+              },
+              {
+                "id": "priority",
+                "label": "Fast",
+                "description": "1.5x speed, increased usage"
+              }
+            ],
+            "currentValue": "default"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gpt-5.5",
+      "name": "GPT-5.5",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoningEffort",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              }
+            ],
+            "currentValue": "medium"
+          },
+          {
+            "id": "serviceTier",
+            "label": "Service Tier",
+            "type": "select",
+            "options": [
+              {
+                "id": "default",
+                "label": "Standard",
+                "isDefault": true
+              },
+              {
+                "id": "priority",
+                "label": "Fast",
+                "description": "1.5x speed, increased usage"
+              }
+            ],
+            "currentValue": "default"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gpt-5.4",
+      "name": "GPT-5.4",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoningEffort",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              }
+            ],
+            "currentValue": "medium"
+          },
+          {
+            "id": "serviceTier",
+            "label": "Service Tier",
+            "type": "select",
+            "options": [
+              {
+                "id": "default",
+                "label": "Standard",
+                "isDefault": true
+              },
+              {
+                "id": "priority",
+                "label": "Fast",
+                "description": "1.5x speed, increased usage"
+              }
+            ],
+            "currentValue": "default"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gpt-5.4-mini",
+      "name": "GPT-5.4-Mini",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoningEffort",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              }
+            ],
+            "currentValue": "medium"
+          }
+        ]
+      }
+    }
+  ],
+  "slashCommands": [],
+  "skills": [],
+  "instanceId": "codex",
+  "driver": "codex",
+  "continuation": {
+    "groupKey": "codex:home:/root/.codex"
+  },
+  "versionAdvisory": {
+    "status": "unknown",
+    "currentVersion": null,
+    "latestVersion": null,
+    "updateCommand": "npm install -g @openai/codex@latest",
+    "canUpdate": true,
+    "checkedAt": "2026-08-03T00:19:07.153Z",
+    "message": null
+  }
+}

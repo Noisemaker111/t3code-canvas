@@ -1,0 +1,1127 @@
+{
+  "displayName": "Cursor",
+  "badgeLabel": "Early Access",
+  "showInteractionModeToggle": true,
+  "enabled": true,
+  "installed": true,
+  "version": null,
+  "status": "error",
+  "auth": {
+    "status": "unknown"
+  },
+  "checkedAt": "2026-08-03T00:19:07.197Z",
+  "message": "Cursor Agent CLI is installed but timed out while running `agent about`.",
+  "models": [
+    {
+      "slug": "default",
+      "name": "Auto",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": []
+      }
+    },
+    {
+      "slug": "grok-4.5",
+      "name": "Cursor Grok 4.5",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Effort",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium"
+              },
+              {
+                "id": "high",
+                "label": "High",
+                "isDefault": true
+              }
+            ],
+            "currentValue": "high"
+          },
+          {
+            "id": "fastMode",
+            "label": "Fast",
+            "type": "boolean",
+            "currentValue": true
+          }
+        ]
+      }
+    },
+    {
+      "slug": "composer-2.5",
+      "name": "Composer 2.5",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "fastMode",
+            "label": "Fast",
+            "type": "boolean",
+            "currentValue": true
+          }
+        ]
+      }
+    },
+    {
+      "slug": "claude-opus-5",
+      "name": "Opus 5",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Effort",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium"
+              },
+              {
+                "id": "high",
+                "label": "High",
+                "isDefault": true
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              },
+              {
+                "id": "max",
+                "label": "Max"
+              }
+            ],
+            "currentValue": "high"
+          },
+          {
+            "id": "contextWindow",
+            "label": "Context",
+            "type": "select",
+            "options": [
+              {
+                "id": "300k",
+                "label": "300K",
+                "isDefault": true
+              },
+              {
+                "id": "1m",
+                "label": "1M"
+              }
+            ],
+            "currentValue": "300k"
+          },
+          {
+            "id": "fastMode",
+            "label": "Fast",
+            "type": "boolean",
+            "currentValue": false
+          }
+        ]
+      }
+    },
+    {
+      "slug": "claude-opus-4-8",
+      "name": "Opus 4.8",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Effort",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium"
+              },
+              {
+                "id": "high",
+                "label": "High",
+                "isDefault": true
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              },
+              {
+                "id": "max",
+                "label": "Max"
+              }
+            ],
+            "currentValue": "high"
+          },
+          {
+            "id": "contextWindow",
+            "label": "Context",
+            "type": "select",
+            "options": [
+              {
+                "id": "300k",
+                "label": "300K",
+                "isDefault": true
+              },
+              {
+                "id": "1m",
+                "label": "1M"
+              }
+            ],
+            "currentValue": "300k"
+          },
+          {
+            "id": "fastMode",
+            "label": "Fast",
+            "type": "boolean",
+            "currentValue": false
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gpt-5.6-sol",
+      "name": "GPT-5.6 Sol",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              },
+              {
+                "id": "max",
+                "label": "Max"
+              }
+            ],
+            "currentValue": "medium"
+          },
+          {
+            "id": "contextWindow",
+            "label": "Context",
+            "type": "select",
+            "options": [
+              {
+                "id": "272k",
+                "label": "272K",
+                "isDefault": true
+              },
+              {
+                "id": "1m",
+                "label": "1M"
+              }
+            ],
+            "currentValue": "272k"
+          },
+          {
+            "id": "fastMode",
+            "label": "Fast",
+            "type": "boolean",
+            "currentValue": false
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gpt-5.5",
+      "name": "GPT-5.5",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              }
+            ],
+            "currentValue": "medium"
+          },
+          {
+            "id": "contextWindow",
+            "label": "Context",
+            "type": "select",
+            "options": [
+              {
+                "id": "272k",
+                "label": "272K",
+                "isDefault": true
+              },
+              {
+                "id": "1m",
+                "label": "1M"
+              }
+            ],
+            "currentValue": "272k"
+          },
+          {
+            "id": "fastMode",
+            "label": "Fast",
+            "type": "boolean",
+            "currentValue": false
+          }
+        ]
+      }
+    },
+    {
+      "slug": "claude-fable-5",
+      "name": "Fable 5",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Effort",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium"
+              },
+              {
+                "id": "high",
+                "label": "High",
+                "isDefault": true
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              },
+              {
+                "id": "max",
+                "label": "Max"
+              }
+            ],
+            "currentValue": "high"
+          },
+          {
+            "id": "contextWindow",
+            "label": "Context",
+            "type": "select",
+            "options": [
+              {
+                "id": "300k",
+                "label": "300K",
+                "isDefault": true
+              },
+              {
+                "id": "1m",
+                "label": "1M"
+              }
+            ],
+            "currentValue": "300k"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "claude-sonnet-5",
+      "name": "Sonnet 5",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Effort",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium"
+              },
+              {
+                "id": "high",
+                "label": "High",
+                "isDefault": true
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              },
+              {
+                "id": "max",
+                "label": "Max"
+              }
+            ],
+            "currentValue": "high"
+          },
+          {
+            "id": "contextWindow",
+            "label": "Context",
+            "type": "select",
+            "options": [
+              {
+                "id": "300k",
+                "label": "300K",
+                "isDefault": true
+              },
+              {
+                "id": "1m",
+                "label": "1M"
+              }
+            ],
+            "currentValue": "300k"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gpt-5.6-terra",
+      "name": "GPT-5.6 Terra",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              },
+              {
+                "id": "max",
+                "label": "Max"
+              }
+            ],
+            "currentValue": "medium"
+          },
+          {
+            "id": "contextWindow",
+            "label": "Context",
+            "type": "select",
+            "options": [
+              {
+                "id": "272k",
+                "label": "272K",
+                "isDefault": true
+              },
+              {
+                "id": "1m",
+                "label": "1M"
+              }
+            ],
+            "currentValue": "272k"
+          },
+          {
+            "id": "fastMode",
+            "label": "Fast",
+            "type": "boolean",
+            "currentValue": false
+          }
+        ]
+      }
+    },
+    {
+      "slug": "claude-sonnet-4-6",
+      "name": "Sonnet 4.6",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Effort",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "max",
+                "label": "Max"
+              }
+            ],
+            "currentValue": "medium"
+          },
+          {
+            "id": "contextWindow",
+            "label": "Context",
+            "type": "select",
+            "options": [
+              {
+                "id": "200k",
+                "label": "200K",
+                "isDefault": true
+              },
+              {
+                "id": "1m",
+                "label": "1M"
+              }
+            ],
+            "currentValue": "200k"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gpt-5.3-codex",
+      "name": "Codex 5.3",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              }
+            ],
+            "currentValue": "medium"
+          },
+          {
+            "id": "fastMode",
+            "label": "Fast",
+            "type": "boolean",
+            "currentValue": false
+          }
+        ]
+      }
+    },
+    {
+      "slug": "claude-opus-4-7",
+      "name": "Opus 4.7",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Effort",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium"
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High",
+                "isDefault": true
+              },
+              {
+                "id": "max",
+                "label": "Max"
+              }
+            ],
+            "currentValue": "xhigh"
+          },
+          {
+            "id": "contextWindow",
+            "label": "Context",
+            "type": "select",
+            "options": [
+              {
+                "id": "300k",
+                "label": "300K",
+                "isDefault": true
+              },
+              {
+                "id": "1m",
+                "label": "1M"
+              }
+            ],
+            "currentValue": "300k"
+          },
+          {
+            "id": "fastMode",
+            "label": "Fast",
+            "type": "boolean",
+            "currentValue": false
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gpt-5.4",
+      "name": "GPT-5.4",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              }
+            ],
+            "currentValue": "medium"
+          },
+          {
+            "id": "contextWindow",
+            "label": "Context",
+            "type": "select",
+            "options": [
+              {
+                "id": "272k",
+                "label": "272K",
+                "isDefault": true
+              },
+              {
+                "id": "1m",
+                "label": "1M"
+              }
+            ],
+            "currentValue": "272k"
+          },
+          {
+            "id": "fastMode",
+            "label": "Fast",
+            "type": "boolean",
+            "currentValue": false
+          }
+        ]
+      }
+    },
+    {
+      "slug": "claude-opus-4-6",
+      "name": "Opus 4.6",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Effort",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium"
+              },
+              {
+                "id": "high",
+                "label": "High",
+                "isDefault": true
+              },
+              {
+                "id": "max",
+                "label": "Max"
+              }
+            ],
+            "currentValue": "high"
+          },
+          {
+            "id": "contextWindow",
+            "label": "Context",
+            "type": "select",
+            "options": [
+              {
+                "id": "200k",
+                "label": "200K",
+                "isDefault": true
+              },
+              {
+                "id": "1m",
+                "label": "1M"
+              }
+            ],
+            "currentValue": "200k"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "claude-opus-4-5",
+      "name": "Opus 4.5",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": []
+      }
+    },
+    {
+      "slug": "gpt-5.2",
+      "name": "GPT-5.2",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              }
+            ],
+            "currentValue": "medium"
+          },
+          {
+            "id": "fastMode",
+            "label": "Fast",
+            "type": "boolean",
+            "currentValue": false
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gpt-5.6-luna",
+      "name": "GPT-5.6 Luna",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              },
+              {
+                "id": "max",
+                "label": "Max"
+              }
+            ],
+            "currentValue": "medium"
+          },
+          {
+            "id": "contextWindow",
+            "label": "Context",
+            "type": "select",
+            "options": [
+              {
+                "id": "272k",
+                "label": "272K",
+                "isDefault": true
+              },
+              {
+                "id": "1m",
+                "label": "1M"
+              }
+            ],
+            "currentValue": "272k"
+          },
+          {
+            "id": "fastMode",
+            "label": "Fast",
+            "type": "boolean",
+            "currentValue": false
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gemini-3.6-flash",
+      "name": "Gemini 3.6 Flash",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Effort",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium"
+              },
+              {
+                "id": "high",
+                "label": "High",
+                "isDefault": true
+              }
+            ],
+            "currentValue": "high"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gemini-3.1-pro",
+      "name": "Gemini 3.1 Pro",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": []
+      }
+    },
+    {
+      "slug": "gpt-5.4-mini",
+      "name": "GPT-5.4 Mini",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              }
+            ],
+            "currentValue": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gpt-5.4-nano",
+      "name": "GPT-5.4 Nano",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "xhigh",
+                "label": "Extra High"
+              }
+            ],
+            "currentValue": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "claude-haiku-4-5",
+      "name": "Haiku 4.5",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": []
+      }
+    },
+    {
+      "slug": "claude-sonnet-4-5",
+      "name": "Sonnet 4.5",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": []
+      }
+    },
+    {
+      "slug": "gpt-5.1",
+      "name": "GPT-5.1",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "medium",
+                "label": "Medium",
+                "isDefault": true
+              },
+              {
+                "id": "high",
+                "label": "High"
+              }
+            ],
+            "currentValue": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "gemini-3-flash",
+      "name": "Gemini 3 Flash",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": []
+      }
+    },
+    {
+      "slug": "gemini-3.5-flash",
+      "name": "Gemini 3.5 Flash",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": []
+      }
+    },
+    {
+      "slug": "claude-sonnet-4",
+      "name": "Sonnet 4",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": []
+      }
+    },
+    {
+      "slug": "gpt-5-mini",
+      "name": "GPT-5 Mini",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": []
+      }
+    },
+    {
+      "slug": "gemini-2.5-flash",
+      "name": "Gemini 2.5 Flash",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": []
+      }
+    },
+    {
+      "slug": "kimi-k3",
+      "name": "Kimi K3",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "low",
+                "label": "Low"
+              },
+              {
+                "id": "high",
+                "label": "High"
+              },
+              {
+                "id": "max",
+                "label": "Max",
+                "isDefault": true
+              }
+            ],
+            "currentValue": "max"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "kimi-k2.7-code",
+      "name": "Kimi K2.7 Code",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": []
+      }
+    },
+    {
+      "slug": "glm-5.2",
+      "name": "GLM 5.2",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": [
+          {
+            "id": "reasoning",
+            "label": "Reasoning",
+            "type": "select",
+            "options": [
+              {
+                "id": "high",
+                "label": "High",
+                "isDefault": true
+              },
+              {
+                "id": "max",
+                "label": "Max"
+              }
+            ],
+            "currentValue": "high"
+          }
+        ]
+      }
+    }
+  ],
+  "slashCommands": [],
+  "skills": [],
+  "instanceId": "cursor",
+  "driver": "cursor",
+  "continuation": {
+    "groupKey": "cursor:instance:cursor"
+  },
+  "versionAdvisory": {
+    "status": "unknown",
+    "currentVersion": null,
+    "latestVersion": null,
+    "updateCommand": "cursor-agent update",
+    "canUpdate": true,
+    "checkedAt": "2026-08-03T00:19:07.197Z",
+    "message": null
+  }
+}

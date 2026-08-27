@@ -1,0 +1,24 @@
+{
+  "since": "2026-08-02T23:20:24.991Z",
+  "spend": {
+    "inputTokens": 0,
+    "cachedInputTokens": 0,
+    "outputTokens": 0,
+    "usd": 0,
+    "measuredCalls": 0,
+    "unmeasuredCalls": 0,
+    "modelMs": 0
+  },
+  "counters": {
+    "heartbeats": 10,
+    "skipped": 5,
+    "ticks": 0,
+    "failed": 0,
+    "writes": 0,
+    "nudges": 0,
+    "modelSkipped": 0,
+    "ruleWrites": 0
+  },
+  "servedByTier": {},
+  "ruleFires": {}
+}

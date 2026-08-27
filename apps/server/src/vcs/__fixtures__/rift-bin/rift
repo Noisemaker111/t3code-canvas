@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+command_name="${1:-}"
+shift || true
+
+case "$command_name" in
+  init)
+    # A sentinel lets tests exercise the reflink-unsupported failure path without
+    # depending on the host filesystem.
+    if [ -e "$PWD/.rift-fake-init-fail" ]; then
+      echo "copy-on-write cloning unavailable: $PWD does not support Linux copy-on-write reflinks" >&2
+      exit 1
+    fi
+    # A second sentinel models a generic (non-reflink) init failure, which must
+    # NOT trigger the git-worktree fallback.
+    if [ -e "$PWD/.rift-fake-init-generic-fail" ]; then
+      echo "rift init failed: the working tree has uncommitted changes" >&2
+      exit 1
+    fi
+    # Stale on-disk marker whose id is gone from the registry — real rift refuses
+    # init until the marker file is removed. The recovery path under test clears
+    # `.rift` and retries; keep rejecting while that exact sentinel remains.
+    if [ -f "$PWD/.rift" ]; then
+      marker="$(tr -d '[:space:]' <"$PWD/.rift" || true)"
+      if [ "$marker" = "STALE-RIFT-MARKER" ]; then
+        echo "rift marker does not match the registry at: $PWD" >&2
+        exit 1
+      fi
+    fi
+    exit 0
+    ;;
+  create)
+    # Tests set RIFT_FAKE_ARGS_LOG to assert on the exact argv rift received
+    # (notably that --into is always passed and always absolute).
+    if [ -n "${RIFT_FAKE_ARGS_LOG:-}" ]; then
+      printf '%s\n' "$*" >>"$RIFT_FAKE_ARGS_LOG"
+    fi
+    name=""
+    into=""
+    while [ "$#" -gt 0 ]; do
+      case "$1" in
+        --name)
+          name="$2"
+          shift 2
+          ;;
+        --into)
+          into="$2"
+          shift 2
+          ;;
+        *)
+          shift
+          ;;
+      esac
+    done
+    target="$into/$name"
+    mkdir -p "$target"
+    cp -a "$PWD/." "$target/"
+    printf '%s\n' "$target"
+    ;;
+  remove)
+    target="${*: -1}"
+    if [ ! -e "$target" ]; then
+      echo "workspace does not exist: $target" >&2
+      exit 1
+    fi
+    rm -rf -- "$target"
+    ;;
+  *)
+    echo "unsupported fake rift command: $command_name" >&2
+    exit 2
+    ;;
+esac

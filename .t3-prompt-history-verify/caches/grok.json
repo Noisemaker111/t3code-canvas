@@ -1,0 +1,48 @@
+{
+  "displayName": "Grok",
+  "badgeLabel": "Early Access",
+  "showInteractionModeToggle": false,
+  "requiresNewThreadForModelChange": true,
+  "enabled": true,
+  "installed": true,
+  "version": "0.2.118",
+  "status": "ready",
+  "auth": {
+    "status": "unknown"
+  },
+  "checkedAt": "2026-08-03T00:19:07.242Z",
+  "models": [
+    {
+      "slug": "grok-4.5",
+      "name": "Grok 4.5",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": []
+      }
+    },
+    {
+      "slug": "grok-build",
+      "name": "Grok Build",
+      "isCustom": false,
+      "capabilities": {
+        "optionDescriptors": []
+      }
+    }
+  ],
+  "slashCommands": [],
+  "skills": [],
+  "instanceId": "grok",
+  "driver": "grok",
+  "continuation": {
+    "groupKey": "grok:instance:grok"
+  },
+  "versionAdvisory": {
+    "status": "unknown",
+    "currentVersion": "0.2.118",
+    "latestVersion": null,
+    "updateCommand": null,
+    "canUpdate": false,
+    "checkedAt": "2026-08-03T00:19:14.592Z",
+    "message": null
+  }
+}
