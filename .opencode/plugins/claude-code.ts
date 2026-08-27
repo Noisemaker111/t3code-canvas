@@ -50,13 +50,12 @@ export const makeClaudeCodeTool = (run: ClaudeRunner = runClaudeCode) =>
       additionalProperties: false,
     },
     execute: async (input: ClaudeCodeInput, context?: ToolContext) => {
+      const sessionKey = input.sessionKey || context?.sessionID;
       const result = await run({
         cwd: input.cwd?.trim() || process.cwd(),
         prompt: input.prompt,
         resume: input.resume === true,
-        ...(input.sessionKey || context?.sessionID
-          ? { sessionKey: input.sessionKey || context?.sessionID }
-          : {}),
+        ...(sessionKey ? { sessionKey } : {}),
         ...(input.model ? { model: input.model } : {}),
         ...(input.permissionMode ? { permissionMode: input.permissionMode } : {}),
         ...(context?.signal ? { signal: context.signal } : {}),
