@@ -42,7 +42,7 @@ dates.
 | 2026-08-27 15:10–15:56 -0400 | `vps-code` [`35a36b8`](https://github.com/Noisemaker111/vps-code/commit/35a36b88ab0e0ee289a00bc98bc5efd9f4537f00), [`9112bb6`](https://github.com/Noisemaker111/vps-code/commit/9112bb634d2a458c018834867c5e55a8687ae0ab), [`73c0eeb`](https://github.com/Noisemaker111/vps-code/commit/73c0eeba8723147caa5a4b461f23dbb568daba14) | The migration was made explicit and safe: the app became a complete standalone submodule, release builds materialize it from its own HEAD, and the migration handoff was documented.       |
 | 2026-08-27 15:45 -0400       | `t3code-canvas` [`0da5a33`](https://github.com/Noisemaker111/t3code-canvas/commit/0da5a33)                                                                                                                                                                                                                                        | The current public `main` line imported the T3 Code canvas workspace. Subsequent commits on this line are Noisemaker111 changes, including Windows portability and the Claude Code bridge. |
 | 2026-08-27 17:00 -0400       | `t3code-canvas` [`a242f5b`](https://github.com/Noisemaker111/t3code-canvas/commit/a242f5becccd5eb82059fa084e16af36e48c9ea7)                                                                                                                                                                                                       | The completed bridge work claim was cleared.                                                                                                                                               |
-| 2026-08-27 17:24–17:27 -0400 | `t3code-canvas` [`52a5f42`](https://github.com/Noisemaker111/t3code-canvas/commit/52a5f42c6f9ba7271711731e55e61bedcb0e09b8)                                                                                                                                                                                                       | The public README and this fork journey were published, with current package status clarified.                                                                                             |
+| 2026-08-27 17:24–17:29 -0400 | `t3code-canvas` [`bed34c8`](https://github.com/Noisemaker111/t3code-canvas/commit/bed34c8)                                                                                                                                                                                                                                        | The public README and this fork journey were published, with current package status clarified.                                                                                             |
 
 The 2026-08-27 fork-owner commits changed more than a directory name: they
 made this workspace independently buildable and releasable, kept the web
@@ -67,7 +67,7 @@ reads the application version from that checkout's own `HEAD`.
 ## How the two repositories relate now
 
 At the documented snapshot, `vps-code`'s `vendor/t3code` gitlink points to
-`52a5f42` (the public repository's `main` commit). The parent records only that
+`bed34c8` (the public repository's `main` commit). The parent records only that
 40-character application commit; it does not contain the application's files
 in its own tree. A standalone checkout of `t3code-canvas` is the source for the
 application. A checkout of `vps-code` needs
