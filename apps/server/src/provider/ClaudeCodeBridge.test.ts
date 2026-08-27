@@ -135,4 +135,40 @@ describe("ClaudeCodeBridge", () => {
       await rm(directory, { recursive: true, force: true });
     }
   });
+
+  it("registers and invokes the visible OpenCode claude_code tool", async () => {
+    const directory = await mkdtemp(join(tmpdir(), "claude-bridge-registration-"));
+    const fake = join(directory, "fake-claude.mjs");
+    await writeFile(
+      fake,
+      'process.stdin.resume(); process.stdin.on("end", () => console.log(JSON.stringify({type:"result",result:"registered"})));',
+    );
+    try {
+      const module = await import("../../../../.opencode/plugins/claude-code.ts");
+      const added: Array<{ readonly name?: string; readonly execute?: Function }> = [];
+      await module.default.setup({
+        tool: {
+          transform: async (transform) =>
+            transform({ add: (tool) => added.push(tool as (typeof added)[number]) }),
+        },
+      });
+      const tool = added.find((candidate) => candidate.name === "claude_code");
+      expect(tool?.name).toBe("claude_code");
+      const fakeTool = module.makeClaudeCodeTool(async (options) =>
+        runClaudeCode({ ...options, executable: process.execPath, executableArgs: [fake] }),
+      );
+      const result = await fakeTool.execute({ prompt: "hello", cwd: directory }, undefined);
+      const direct = await runClaudeCode({
+        cwd: directory,
+        prompt: "hello",
+        executable: process.execPath,
+        executableArgs: [fake],
+      });
+      expect(typeof result.content).toBe("string");
+      expect(direct.text).toBe("");
+      expect(direct.events).toContainEqual({ type: "result", result: "registered" });
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
+  });
 });
